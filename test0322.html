@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>test</div>
+  <script>
+    /**
+     * 例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。
+    */
+    function romanToInt( s ) {
+    // write code here
+      let res = 0;
+      for(let i=0;i<s.length;i++){
+        if(s[i]=='I'){
+          if(s[i+1] =='V' || s[i+1] =='X'){
+            res += s[i+1] =='V'? 4 : (s[i+1] =='X'? 9: res)
+            i++
+            continue
+          }
+          res += 1
+          continue
+        }else if(s[i] == 'X'){
+          if(s[i+1] =='L' || s[i+1] =='C'){
+            res += s[i+1] =='L'? 40 : (s[i+1] =='C'? 90: res)
+            i++
+            continue
+          }
+          res += 10
+          continue
+        }else if(s[i] == 'C'){
+          if(s[i+1] =='D' || s[i+1] =='M'){
+            res += s[i+1] =='D'? 400 : (s[i+1] =='M'? 900: res)
+            i++
+            continue
+          }
+          res += 100
+          continue
+        }else if(s[i] == 'V'){
+          res += 5
+          continue
+        }else if(s[i] == 'L'){
+          res += 50
+          continue
+        }else if(s[i] == 'D'){
+          res += 500
+          continue
+        }else if(s[i] == 'M'){
+          res += 1000
+          continue
+        }
+      }
+      return res
+    }
+    // console.log(romanToInt("MCMXCIV"))
+
+    function caseTransform(s){
+      s = s.toString()
+      let arr = []
+      let tmp = []
+      let res = ''
+      for(let i=1;i<s.length;i++){
+        let char = s.charAt(i)
+        if(char <= 'Z' && char>= 'A'){
+          arr.push(i)
+        }
+      }
+      arr.unshift(0)
+      for(let i=0;i<arr.length;i++){
+        tmp.push(s.slice(arr[i],arr[i+1]))
+      }
+      console.log(tmp)
+      res = res + s + " " + tmp[0].toLowerCase()
+      for(let i=1;i<tmp.length;i++){
+        res = res +  tmp[i] 
+      }
+      res = res + " "
+      for(let i=0;i<tmp.length-1;i++){
+        res = res +  tmp[i].toLowerCase() + '_' 
+      }
+      res = res + tmp[tmp.length-1].toLowerCase() + " "
+      for(let i=0;i<tmp.length-1;i++){
+        res = res +  tmp[i].toLowerCase() + '-' 
+      }
+      res = res + tmp[tmp.length-1].toLowerCase() 
+      return res
+    }
+    // console.log(caseTransform('PascalCaseTest'))
+
+    /**
+     * s = "3*[a2*[c]]", 返回 “accaccacc”
+    */
+    function computeString( str ) {
+    // write code here
+     let arr = str.split('*')
+     let res = ''
+     let tmp = []
+     for(let i=0;i<arr.length;i++){
+       arr[i] = arr[i].replace(/\[|]/g, '')
+     }
+     for(let i=0;i<arr.length;i++){
+       if(!isNaN(arr[i])){
+         tmp.push(arr[i])
+       }else{
+         for(let j=0;j<arr[i].length;j++){
+           tmp.push(arr[i][j])
+         }
+       }
+     }
+     tmp = tmp.reverse()
+     for(let i=0;i<tmp.length;i++){
+       if(isNaN(tmp[i])){
+         res =  tmp[i] + res 
+       }else{
+         let tmpt = res
+         for(let j =1;j<parseInt(tmp[i]);j++){
+           res += tmpt
+         }
+       }
+     }
+     return res
+    }
+    console.log(computeString("3*[a2*[c]]"))
+  </script>
+</body>
+</html>

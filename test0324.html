@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <a href='C:\Users\Pictures\test.png' download>下载jpg图片</a>
+  </div>
+  <button onClick="download()">下载</button>
+  <!-- <button onClick="downloadFile('https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3206689113,2237998950&fm=26&gp=0.jpg','test.png')">Bolb下载</button> -->
+  <!-- <button onClick="downloadByForm('https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3206689113,2237998950&fm=26&gp=0.jpg','test.png')">Bolb下载</button> -->
+  <button onClick="downloadFileByBase64('https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3206689113,2237998950&fm=26&gp=0.jpg','test.png')">Bolb下载</button>
+
+  
+  <script>
+
+    //new set 用法
+    let arr = [1,2,3,2,1,4,5]
+    let a = new Set(arr)
+    a= Array.from(a)
+    console.log(a)
+
+    const isSupport = 'download' in document.createElement('a');
+    // 创建一个json类型的Blob对象，支持传入同类型数据的一个数组
+    var debug = {hello: "world"};
+    var blob = new Blob([JSON.stringify(debug, null, 2)],
+      {type : 'application/json'});
+    console.log(blob) //Blob(22) {size: 22, type: 'application/json'}
+     
+    /**
+     * 解决a标签不能直接下载浏览器可浏览的文件
+    */
+    function download() {
+      	// 将链接地址字符内容转变成blob地址, 解决图片下载直接打开问题
+      const url="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3206689113,2237998950&fm=26&gp=0.jpg"
+      fetch(url).then(async res => await res.blob()).then((blob) => {
+          // 创建隐藏的可下载链接
+          const a = document.createElement('a');
+          a.style.display = 'none';
+          a.href = URL.createObjectURL(blob);
+          // 保存下来的文件名
+          a.download = 'img.png';
+          document.body.appendChild(a);
+          a.click();
+          // 移除元素
+          document.body.removeChild(a);
+      }) 
+    }
+    
+    /**
+     * 下载文件
+     * @param {String} path - 下载地址/下载请求地址。
+     * @param {String} name - 下载文件的名字/重命名（考虑到兼容性问题，最好加上后缀名）
+    */
+    function downloadFile (path, name) {
+      const xhr = new XMLHttpRequest();
+      xhr.open('get', path);
+      xhr.responseType = 'blob';
+      xhr.send();
+      xhr.onload = function () {
+        if (this.status === 200 || this.status === 304) {
+            // 如果是IE10及以上，不支持download属性，采用msSaveOrOpenBlob方法，但是IE10以下也不支持msSaveOrOpenBlob
+            if ('msSaveOrOpenBlob' in navigator) {
+                navigator.msSaveOrOpenBlob(this.response, name);
+                return;
+            }
+            // const blob = new Blob([this.response], { type: xhr.getResponseHeader('Content-Type') });
+            // const url = URL.createObjectURL(blob);
+            const url = URL.createObjectURL(this.response);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+      };
+    }
+
+    /**
+     * 下载文件
+     * @param {String} path - 下载地址/下载请求地址。
+     * @param {String} name - 下载文件的名字/重命名（考虑到兼容性问题，最好加上后缀名）
+    */
+    function downloadFileByBase64(path, name){
+      const xhr = new XMLHttpRequest()
+      xhr.open('get', path)
+      xhr.responseType = 'blob'
+      xhr.send()
+      xhr.onload = function(){
+        if(this.status === 200 || this.status === 304 ){
+          const fileReader = new FileReader()
+          fileReader.readAsDataURL(this.response);
+          fileReader.onload = function(){
+            const a = document.createElement('a')
+            a.style.display = 'none'
+            a.href = this.result
+            a.download = name
+            document.body.appendChild(a)
+            a.click()
+            document.body.removeChild(a)
+          }
+        }
+      }
+    }
+    /**
+     * 下载文件
+     * @param {String} url 下载地址
+     * @param {String} name 下载文件的名称
+    */
+    function downloadByForm(url, name){
+      //创建form
+      const formObj = document.createElement('form');
+      formObj.action = url
+      formObj.method = 'get'
+      formObj.style.display = 'none'
+      //创建input主要进行传参
+      const formItem = document.createElement('input')
+      formItem.value = name //传参的值
+      formItem.name = 'name' //传参字段名称
+      formObj.appendChild(formItem)
+      document.body.appendChild(formObj)
+      formObj.submit() //发送请求
+      document.body.removeChild(formObj) //发送完清除掉
+    }
+
+    // window.open('https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3206689113,2237998950&fm=26&gp=0.jpg');
+
+    // location.href = 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3206689113,2237998950&fm=26&gp=0.jpg';
+
+    // xhr是XMLHttpRequest对象
+    // const content = xhr.getResponseHeader('content-disposition'); // 注意是全小写，自定义的header也是全小写
+    // if (content) {
+    //     let name1 = content.match(/filename=(.*);/)[1]; // 获取filename的值
+    //     let name2 = content.match(/filename\*=(.*)/)[1]; // 获取filename*的值
+    //     name1 = decodeURIComponent(name1);
+    //     name2 = decodeURIComponent(name2.substring(6)); // 这个下标6就是UTF-8''
+    // }
+
+  </script>
+</body>
+</html>

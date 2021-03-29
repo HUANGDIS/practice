@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>test</div>
+  <script>
+    let res = [1,2,-3].reduce((a, b) => a - b, 0)
+    console.log(res)
+
+
+    var a = 10;
+    function a(){}
+    console.log(typeof a)
+
+    for(var i = 0; i < 5; i++){
+    requestAnimationFrame(() => console.log(i));
+    }
+
+    var str1=new RegExp("e");
+    document.write(str1.exec("hello"));
+
+    let array = [,1,,2,,3];
+    array = array.map((i) => ++i)
+    console.log(array)
+
+    console.log(({} + 'b' > {} + 'a'))
+
+    console.log( Date.now() )
+    // alert(3==true)
+    // alert(null == undefined)
+
+    for(let i=0;i<2;i++){
+    setTimeout(function(){
+      console.log(i)
+    },100
+    );
+    }
+    for(var i=0;i<2;i++){
+      setTimeout(function(){
+      console.log(i)
+      },100
+      );
+    }
+    
+    var array1=[-1,1,3,4,6,10]; 
+    array1.sort((a,b)=>Math.abs(a-3)-Math.abs(b-3));
+    console.log(array1)
+  </script>
+</body>
+</html>
