@@ -1,0 +1,71 @@
+/*less*/
+@width: 50%;
+@color: #999;
+@bgColor: skyblue;
+@Box : .box; //变量选择器
+@borderStyle: border-style; //局部变量
+@image: './img';
+
+//声明变量
+//结构: @name: { 属性: 值 ;};
+//使用：@name();
+@background: {
+  background: pink
+}
+
+;
+
+//变量运算
+//加减法时 以第一个数据的单位为基准
+//乘除法时 注意单位一定要统一
+@width-px: 400px;
+
+
+//用变量去定义变量
+@fnord: 'I am fnord';
+@var: 'fnord';
+
+.center(@width1, @margin) {
+  position: absolute;
+  left: @width;
+  margin-left: @margin;
+}
+
+body {
+  background: url("@{image}/img.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@{Box} {
+  width: @width-px;
+  height: @width-px;
+  border: 1px solid #000;
+  // position: absolute;
+  // left: @width;
+  // margin-left: -200px;
+  .center(50%, -200px);
+  background-color: @bgColor;
+  @{borderStyle}: dashed;
+}
+
+.bix::after {
+  content: @@var;
+}
+
+.child1 {
+  width: (@width-px)*0.5;
+  height: (@width-px)*0.5;
+  border: 1px solid #000;
+  // position: absolute;
+  // left: @width;
+  // margin-left: -100px;
+  .center(50%, -100px);
+  top: @width;
+  margin-top: -100px;
+  @background();
+
+  &:hover {
+    background-color: gold;
+  }
+}

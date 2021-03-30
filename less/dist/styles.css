@@ -1,0 +1,33 @@
+/*less*/
+body {
+  background: url("./img/img.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.box {
+  width: 400px;
+  height: 400px;
+  border: 1px solid #000;
+  position: absolute;
+  left: 50%;
+  margin-left: -200px;
+  background-color: skyblue;
+  border-style: dashed;
+}
+.bix::after {
+  content: 'I am fnord';
+}
+.child1 {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  top: 50%;
+  margin-top: -100px;
+  background: pink;
+}
+.child1:hover {
+  background-color: gold;
+}
