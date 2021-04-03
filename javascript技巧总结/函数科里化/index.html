@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //函数柯里化的是一个为多参数函数实现递归讲解的方式，其核心是：
+    //1、如何缓存每一次传入的参数
+    //2、传入的参数和目标函数的入参作比较
+    const curry=(fn)=>{
+      let params = {}
+      const next =(...args)=>{
+        params = [...params,...args]
+        if(params.length<fn.length){
+          return next;
+        }else{
+          return fn.apply(fn,params)
+        }
+      }
+    }
+    const sum=(a,b,c,d)=>{
+      return a+b+c+d
+    }
+    const fn=curry(sum)
+    const res=fn(1)(2)(3)(4);
+    console.log(res)
+  </script>
+</body>
+</html>

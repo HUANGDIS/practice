@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>test</div>
+  <script>
+    //手写map方法 map()方法根据回调映射一个新数组
+    Array.prototype.map=function(fn){
+      const result = []
+      for(let i=0;i<this.length;i++){
+        if(!this.hasOwnProperty(i)) continue //处理稀疏数组的情况
+        result.push(fn(this[i],i,this))
+      }
+      return result
+    }
+    //使用
+    const arr1 = [1,2,3,,5]
+    const mapArr=arr1.map(item=>item*2)
+    console.log(mapArr)
+
+
+    //手写filter方法 
+    //filter()方法返回一个数组，返回的每一项是在回调函数中执行结果true
+    Array.prototype.filter = function(fn){
+      let result = []
+      for(let i=0;i<this.length;i++){
+        if(!this.hasOwnProperty(i))continue
+        fn(this[i],i,this) && result.push(this[i])
+      }
+      return result
+    }
+    //使用
+    const arr2 = [1,2,3,,4,5]
+    const filterArr = arr2.filter(item=>item>2)
+    console.log(filterArr)
+
+    //手写reduce方法
+    //reduce方法循环迭代，回调函数的结果都会作为下一次的形参的第一个参数
+    Array.prototype.reduce = function(fn,initValue){
+      let result = initValue?initValue:this[0]
+      for(let i=initValue?1:0;i<this.length;i++){
+        if(!this.hasOwnProperty(i)) continue
+        result = fn(result,this[i],i,this)
+      }
+      return result
+    }
+    //使用
+    const arr3 = [1,2,3,,4,5]
+    const reduceSArr = arr3.reduce((a,b)=>a*b,2)
+    console.log(reduceSArr)
+
+    //手写every方法
+    //every()方法测试一个数组内所有元素是否都通过每个指定函数的测试，返回一个Boolean值
+    Array.prototype.every = function(fn){
+      let flag = true
+      for(let i=0;i<this.length;i++){
+        if(!this.hasOwnProperty(i)) continue
+        if(!fn(this[i],i,this))
+          flag = false
+          break
+      }
+      return flag
+    }
+    //使用
+    const arr4 = [1,2,3,,4,5]
+    const everyArr = arr4.every(item=>item>2)
+    console.log(everyArr)
+
+    //手写some方法
+    //some()方法测试数组中是不是至少有一个元素通过了被提供的测试函数，返回一个Boolean值
+    Array.prototype.some = function(fn){
+      let flag = false
+      for(let i=0;i<this.length;i++){
+        if(!this.hasOwnProperty(i)) continue
+        if(fn(this[i],i,this))
+        flag = true
+        break
+      }
+      return flag
+    }
+    const arr5 = [1,2,3,,4,5]
+    const someArr = arr5.some(item=>item>2)
+    console.log(someArr)
+
+    //手写find方法
+    //find()方法返回数组中满足提供的测试函数的第一个元素的值，否则返回undefined
+    Array.prototype.find = function(fn){
+      let res
+      for(let i=0;i<this.length;i++){
+        if(!this.hasOwnProperty(i)) continue
+        if(fn(this[i],i,this)){
+          res = this[i]
+          break
+        }
+      }
+      return res
+    }
+    const arr6 = [1,2,3,,4,5]
+    const findArr = arr6.find(item=>item>2)
+    console.log(findArr)
+
+    
+  </script>
+</body>
+</html>
