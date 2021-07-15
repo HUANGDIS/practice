@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="click">click</button>
+  <h1 id="content"></h1>
+  <script>
+    let click = document.querySelector("#click");
+    let content = document.querySelector("#content")
+    let arr = []
+
+    function closures() {
+      let test = new Array(1000).fill('12345')
+
+      return function () {
+        return test
+      }
+    }
+
+    click.addEventListener("click", function () {
+      arr.push(closures())
+      arr.push(closures())
+
+      content.innerHTML = arr.length
+    });
+
+    // let obj = {id: 1}
+    // let user = {info: obj}
+    // let set = new Set([obj])
+    // let map = new Map([[obj, 'hahaha']])
+
+    // // 重写obj
+    // obj = null 
+
+    // console.log(user.info) // {id: 1}
+    // console.log(set)
+    // console.log(map)
+  </script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>demo</title>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="640">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="modeName=750-12" name="grid" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+     <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+     <script type="text/javascript" src="js/table.js"></script>
+</head>
+ 
+<body>
+    <div class="searchBox">
+        <input type="text" class="searchText" placeholder="搜索内容">
+        <a href="javascript:;" class="searchBtn search">搜索</a>
+    </div>
+    <div class="selectBox">
+        <select name="" id="">
+            <option value="">1</option>
+            <option value="">2</option>
+        </select>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>名称</th>
+                <th>编号</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox" data-id="1">
+                </td>
+                <td>1</td>
+                <td>2</td>
+                <td>
+                    <a href="javascript:;" class="blue edit" data-id="1">编辑</a>
+                    <a href="javascript:;" class="green look" data-id="1">查看</a>
+                    <a href="javascript:;" class="orange" data-id="1">查看2</a>
+                    <a href="javascript:;" class="red delete" data-id="1">删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" data-id="2">
+                </td>
+                <td>1</td>
+                <td>2</td>
+                <td>
+                    <a href="javascript:;" class="blue edit" data-id="1">编辑</a>
+                    <a href="javascript:;" class="green look" data-id="1">查看</a>
+                    <a href="javascript:;" class="orange" data-id="1">查看2</a>
+                    <a href="javascript:;" class="red delete" data-id="1">删除</a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    <a class="checkAll" href="javascript:;">全选</a>
+                    <a class="uncheckAll" href="javascript:;">取消</a>
+                    <a class="editAll" href="javascript:;">删除</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="editRow">
+        <div class="left"><span class="redTips">*</span>旅行社电话：</div>
+        <div class="right">
+            <input type="text" class="inputText placeholder" />
+        </div>
+    </div>
+ 
+    <div class="editRow"><!-- text -->
+        <div class="left"><span class="redTips">*</span>旅行社电话：</div>
+        <div class="right">
+            <input type="text" class="inputText placeholder" />
+        </div>
+    </div> <!-- text end-->
+ 
+    <div class="editRow"> <!-- checkbox -->
+        <div class="left"><span class="redTips">*</span>旅行社电话：</div>
+        <div class="right">
+            <input type="checkbox" />选择1
+            <input type="checkbox" />选择1
+        </div>
+    </div><!-- checkbox end-->
+ 
+    <div class="editRow"> <!-- selectBox -->
+        <div class="left"><span class="redTips">*</span>旅行社电话：</div>
+        <div class="right selectBox">
+            <select name="" id="">
+                <option value="">1</option>
+                <option value="">2</option>
+            </select>
+        </div>
+    </div><!-- selectBox end-->
+ 
+    <div class="editRow"><!-- textarea -->
+        <div class="left"><span class="redTips">*</span>旅行社电话：</div>
+        <div class="right">
+           <textarea  id="" class="textarea placeholder"></textarea>
+        </div>
+    </div><!-- textarea end-->
+    
+    <div class="radioBox"><!-- radioBox -->
+        <div class="editRow">
+            <div class="left"><span class="redTips">*</span>是否开启：</div>
+            <div class="right">
+               <input type="radio" class="radioBtn" name="radio1" checked="checked" value="0">开启
+               <input type="radio" class="radioBtn" name="radio1" value="1">关闭
+            </div>
+        </div>
+        <div class="editRow hide">
+            <div class="left"><span class="redTips">*</span>旅行社电话：</div>
+            <div class="right">
+                <input type="text" class="inputText placeholder" />
+            </div>
+        </div>
+    </div><!-- radioBox end-->
+    
+    <div class="radioBox"><!-- radioBox -->
+        <div class="editRow">
+            <div class="left"><span class="redTips">*</span>是否开启：</div>
+            <div class="right">
+               <input type="radio" class="radioBtn" name="radio2" checked="checked" value="0">开启
+               <input type="radio" class="radioBtn" name="radio2" value="1">关闭
+            </div>
+        </div>
+        <div class="editRow hide">
+            <div class="left"><span class="redTips">*</span>旅行社电话：</div>
+            <div class="right">
+                <input type="text" class="inputText placeholder" />
+            </div>
+        </div>
+    </div><!-- radioBox end-->
+    <script>
+        $(function(){
+            $(document).on('click','.radioBox .radioBtn',function(){
+                var _this = $(this);
+                table.radioBox(_this);
+            })
+        })
+    </script>
+ 
+    <div class="addRowBox">  <!-- addRowBox -->
+        <input type="hidden" class="limite" value="4"><!--添加的上限 +1 -->
+        <a href="javascript:;" class="add">添加</a>
+        <div class="appendBox">
+            <div class="row" id="row_1">
+                <h1>row1</h1>
+                <a href="javascript:;" class="delete" data-id='1'>删除</a>
+            </div>
+            <div class="row" id="row_2">
+                <h1>row1</h1>
+                <a href="javascript:;" class="delete" data-id='2'>删除</a>
+            </div>
+        </div>
+    </div> <!-- addRowBox end-->
+    <script>
+        $(function(){
+            //动态添加删除
+            var _nums=0,_flags=10;
+            $(document).on('click','.addRowBox .add',function(){
+                var limite = $(this).parents('.addRowBox').find('.limite').val(); //获取上限
+                var haveRows = $(this).parents('.addRowBox').find('.row').length; //已存在number
+                var actual = parseInt(limite) - parseInt(haveRows); //实际添加的number
+                _flags++;
+                if(_nums<actual){
+                    var html='';
+                    html+='<div class="row" id="row_'+_flags+'">'+
+                    '<h1>row1</h1>'+
+                    '<a href="javascript:;" class="delete" data-id='+_flags+'>删除</a>'+
+                    '</div>';
+                    _nums++;
+                    $(this).parents('.addRowBox').find('.appendBox').append(html);
+                }else{
+                    console.log('超过上限');
+                    return;
+                }
+            }).on('click','.addRowBox .delete',function(){
+                var id = $(this).data('id');
+                _nums--;
+                $(this).parents('.addRowBox').find('#row_'+ id +'').remove();
+            });
+            //动态添加删除 end
+        })
+    </script>
+ 
+   
+    <script type="text/javascript" src="js/layer/layer.js"></script>
+    
+    <script type="text/javascript" src="js/mobileCheckout.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        // 为input 循环输出  placeholder
+        var inputArray = $('.editRow').find('.placeholder');
+        var inputPlaceHolder = [
+            "111111","222222","333"
+        ];
+        table.placeholder(inputArray,inputPlaceHolder);
+        // 为input 循环输出  placeholder   end
+        
+ 
+        $(document).on('click', '.checkAll', function() { //全选
+                table.check('tbody input[type="checkbox"]', 0)
+            })
+            .on('click', '.uncheckAll', function() { //取消全选
+                table.check('tbody input[type="checkbox"]', 1)
+            })
+            .on('click', '.edit', function() { //单个操作
+                var _this = $(this),
+                    id = _this.data('id'),
+                    pageNum = _this.data('pagenum'),
+                    url = 'tour/' + id + '/delTourMain.do',
+                    reload = 'tour/manageTour.do?pageNum=' + pageNum;
+ 
+                table.edit('.edit', '删除', url, reload);
+            })
+            .on('click', '.editAll', function() { //批量操作
+                var _this = $(this),
+                    id = _this.data('id'),
+                    pageNum = _this.data('pagenum'),
+                    url = 'tour/' + id + '/delTourMain.do',
+                    reload = 'tour/manageTour.do?pageNum=' + pageNum,
+                    grounps = null,
+                    data = {};
+                grounps = table.getCheckboxs($('tbody input[type="checkbox"]'));
+                data.mainIds = grounps; //JSON.stringify(data) --> {"mainIds":["0","1","2"]}
+                table.editAll(grounps, '删除', data, url, reload);
+            })
+            .on('click', '.search', function() { //搜索
+                var text = $('.text').val();
+                var params = {
+                    "name": text
+                };
+                var isSpace = mobile.isSpace(text, 20); //验证是否为空格or空 返回：true or false
+ 
+                /*if(isSpace == false){
+                    console.log('请输入正确内容')
+                    return;
+                }*/
+                var isLimit = table.isLimit(text, 3);
+                if (!table.isLimit(text, 3)) {
+                    console.log('错误isLimit')
+                    return;
+                } else {
+                    console.log('正确isLimit')
+                    return;
+                }
+                table.search(params, 'tour/0/searchTour.do?');
+            })
+    })
+    </script>
+</body>
+ 
+</html>

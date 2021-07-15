@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const intersetion = (arrayA, arrayB)=>
+      arrayA.filter(item=>arrayB.includes(item))
+    const array1 = [1,2,3,4]
+    const array2 = [3,4,5,6]
+    console.log(intersetion(array1,array2))
+
+    const sum = (...array) => [...array].reduce((acc, current)=> acc + current, 0)
+    const testArr = [1,2,3,4]
+    console.log(sum(...testArr))
+
+    //运行函数所花费时间
+    const timeTake = (callback) =>{
+      console.time('执行时间')
+      let result = callback()
+      console.timeEnd("执行时间")
+      return result
+    }
+    timeTake(()=> Math.pow(10,20))
+
+    const average = (...array)=> [...array].reduce((acc , current)=> acc+ current,0)/array.length
+    const testArr1 = [1,2,3,4]
+    console.log(average(...testArr1))
+
+    const topElements = (arr,count=1) =>[...arr].sort((a,b)=>a-b).slice(0,count)
+    console.log(topElements([1, 2, 3, 4, 5, 6])); // [ 6 ]
+    console.log(topElements([1, 2, 30, 40, 30], 3)); // [ 40, 30, 30 ]
+
+    var cQueue = function(){
+      this.stack1 = []
+      this.stack2 = []
+    }
+    cQueue.prototype.append = function(value){
+      this.stack1.push(value)
+    }
+    cQueue.prototype.delEle = function(){
+      if(this.stack2.length){
+        return stack2.pop()
+      }else{
+        while(this.stack1.length){
+          this.stack2.push(this.stack1.pop())
+        }
+        if(!this.stack2.length){
+          return -1
+        }else{
+          return this.stack2.pop()
+        }
+
+      }
+    }
+
+  </script>
+</body>
+</html>
