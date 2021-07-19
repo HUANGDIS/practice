@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <script src="./pane.js"></script>
+  <script src="./tabs.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="app">
+    <tabs :value="activeKey">123
+      <pane label="标签一" name="1">标签一</pane>
+      <pane label="标签二" name="2">标签二</pane>
+      <pane label="标签三" name="3">标签三</pane>
+    </tabs>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data:{
+        activeKey: '1'
+      }
+    })
+  </script>
+</body>
+</html>
