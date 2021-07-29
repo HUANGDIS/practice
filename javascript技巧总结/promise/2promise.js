@@ -38,7 +38,7 @@ class Promise {
   }
 
   resolvePromise(promise2, x, resolve, reject) {
-    if (x === promise2) return { reject() }
+    if (x === promise2) return reject()
     let called
     if (x != null && (typeof x === 'Object' || typeof x === "function")) {
       try {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">点击</button>
+  <script>
+    //es6中类没有变量提升机制，必须先定义类后实例化对象
+    var _this
+    class Student {
+     constructor(sname){
+       this.sname = sname
+        _this = this
+       let btn = document.querySelector("#btn")
+       btn.onclick = this.study.bind(this);
+       btn.onclick = ()=>{this.study()};
+     }
+      study () {
+        console.log(this.sname+"study hard")
+      }
+    }
+    let stu = new Student('zhnagsan')
+    stu.study()
+    console.log(_this == stu) //true
+  </script>
+</body>
+</html>

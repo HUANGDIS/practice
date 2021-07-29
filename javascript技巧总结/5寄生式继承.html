@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function createAnother(original){
+      var clone = Object(original); // 通过调用 object() 函数创建一个新对象
+      clone.sayHi = function(){  // 以某种方式来增强对象
+        alert("hi");
+      };
+      return clone; // 返回这个对象
+    }
+
+
+    let obj = {
+      name: 'lisa',
+      color: ['red','blue']
+    }
+    var instance1 = new createAnother(obj)
+    instance1.sayHi()
+  </script>
+</body>
+</html>

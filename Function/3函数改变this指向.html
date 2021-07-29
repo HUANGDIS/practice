@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn"></button>
+  <script>
+    //call() apply()  bind()
+    //call
+    var obj = {
+      a :10
+    }
+    function fn(a,b){
+      console.log(this)
+      console.log(a+b)
+    }
+    fn.call(obj,1,2)
+
+    //apply
+    fn.apply(obj,[3,4]) //数组是伪数组
+    let arr = [10,20,38]
+    // let max = Math.max(arr)
+    let max = Math.max.apply(null,arr) //可以利用apply传入伪数组
+    console.log(max)
+
+    //bind
+    let newFn = fn.bind(obj,4,5) //bind改变this指向返回一个新函数不会自动执行
+    newFn()
+    //bind应用
+    let btn = document.querySelector("#btn")
+    let num = 10
+    btn.onclick = function(){
+      this.innerHTML = "剩余时间" + num + "s"
+      let that = this
+      setInterval(function(){
+        num--
+        this.innerHTML =  "剩余时间" + num + "s"
+      }.bind(this),1000)
+    }
+  </script>
+</body>
+</html>

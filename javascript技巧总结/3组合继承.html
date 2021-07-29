@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function superType(name){
+      this.name = name
+      this.color = ['red']
+    }
+    superType.prototype.getName = function(){
+      return this.name
+    }
+    function subType(age,name){
+      this.age = age
+      superType.call(this,name)
+    }
+    subType.prototype = new superType()
+    subType.prototype.constructor = subType
+    subType.prototype.getAge = function(){
+      return this.age
+    }
+    var instance1 = new subType('lisa',18)
+    instance1.color.push("green")
+    console.log(instance1.color) //["red", "green"]
+    console.log(instance1.getAge());//18
+    console.log(instance1.getName());//lisa
+    console.log(instance1);
+
+    var instance2 = new subType(22)
+    console.log(instance2.color)//["red"]
+    console.log(instance2.getAge());//22
+  </script>
+</body>
+</html>
