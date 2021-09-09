@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+   /* 题目
+    输入：let arr = [
+      {id: 1, name: '部门1', pid: 0},
+      {id: 2, name: '部门2', pid: 1},
+      {id: 3, name: '部门3', pid: 1},
+      {id: 4, name: '部门4', pid: 3},
+      {id: 5, name: '部门5', pid: 4},
+    ]
+    输出：
+    [
+      {
+        "id": 1,
+        "name": "部门1",
+        "pid": 0,
+        "children": [
+              {
+                  "id": 2,
+                  "name": "部门2",
+                  "pid": 1,
+                  "children": []
+              },
+              {
+                  "id": 3,
+                  "name": "部门3",
+                  "pid": 1,
+                  "children": [
+                      // 结果 ,,,
+                  ]
+              }
+          ]
+      }
+    ]
+    */
+  //  递归思路
+  function getChildren(arr,result,pid){
+    let  tmpArr = []
+   arr.forEach(item=>{
+      if(item.id === pid){
+        tmpArr[item.id] = {...item,chilren:[]}
+        result && result.push(tmpArr)
+        getChildren(arr, item.chilren,item.id)
+      }
+    })
+  }
+
+  function arrayToTree(data,pid){
+    let result = []
+    getChildren(data,result,pid)
+    return result
+  }
+  let arr = [
+      {id: 1, name: '部门1', pid: 0},
+      {id: 2, name: '部门2', pid: 1},
+      {id: 3, name: '部门3', pid: 1},
+      {id: 4, name: '部门4', pid: 3},
+      {id: 5, name: '部门5', pid: 4},
+    ]
+  let res = arrayToTree(arr,1)
+  console.log(res)
+
+  </script>
+</body>
+</html>

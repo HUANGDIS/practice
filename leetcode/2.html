@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。
+    /**
+     * 示例：
+      s = "leetcode"
+      返回 0
+      s = "loveleetcode"
+      返回 2
+    */
+   const firstUniqChar = function(s){
+    let map = {}
+    for(let i of s){
+      if(map[i]){
+        map[i] = map[i]  + 1
+      }else{
+        map[i] = 1
+      }
+      // console.log(map)
+    }
+    for(let i=0;i<s.length;i++){
+      if(map[s[i]] === 1){
+        return i
+      }
+      return -1
+    }
+   }
+   let s1 = "leetcode"
+   let s2 = "loveleetcode"
+   console.log(firstUniqChar(s1))
+   console.log(firstUniqChar(s2))
+  </script>
+</body>
+</html>

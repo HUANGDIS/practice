@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  // 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
+  //注意：若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。
+  /**
+   * 示例 1:
+    输入: s = "anagram", t = "nagaram"
+    输出: true
+    示例 2:
+    输入: s = "rat", t = "car"
+    输出: false
+  */
+  const isAnagram  = function(s,t){
+    // 判断长度是否相等
+    let slen = s.length
+    let tlen = t.length
+    if(slen !== tlen){
+      return false
+    }
+    let obj = {}
+    for(let i=0;i<slen;i++){
+      let currentS = s[i]
+      let currentT = t[i]
+      obj[currentS] ? obj[currentS]++ : obj[currentS] = 1
+      obj[currentT] ? obj[currentT]-- : obj[currentT] = -1
+    }
+    return Object.values(obj).every(v=>v===0)
+  }
+  let s1 = "rat", t1 = "car"
+  let s2 = "anagram", t2 = "nagaram"
+  console.log(isAnagram(s1,t1))
+  console.log(isAnagram(s2,t2))
+  </script>
+</body>
+</html>
